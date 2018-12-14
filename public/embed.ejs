@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SurveyGizmo Redirect Test</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        iframe {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<% if(type === 'javascript') { %>
+<h2>JavaScript Embed</h2>
+
+<script type="text/javascript" >document.write('<script src="http' + ( ("https:" == document.location.protocol) ? "s" : "") + '://<%= domain %>/<%= path %>?__output=embedjs&__ref=' + escape(document.location.origin + document.location.pathname) + '" type="text/javascript" ></scr' + 'ipt>');</script><noscript>Integrated data applications for <a href="https://www.surveygizmo.com/team-enterprise/"> enterprise teams </a> - SurveyGizmo. <a href="https://www.surveygizmo.com/s3/4744073/David-Test??jsfallback=true">Please take my survey now</a></noscript><style>.sg-survey{display:none; }</style>
+<% } %>
+
+<% if(type === 'iframe') { %>
+<h2>Iframe Embed</h2>
+
+<!-- This embed code may be restricted to use on a single domain, see documentation at: https://help.surveygizmo.com/help/iframe-embed#limit-permitted-domains-for-embeds -->
+<iframe src="http://<%= domain %>/<%= path %>" frameborder="0" width="700" height="500" style="overflow:hidden"></iframe>
+<% } %>
+
+<% if(type === 'popup') { %>
+<h2>Popup Embed</h2>
+
+<script type="text/javascript">var sg_div = document.createElement("div");sg_div.innerHTML = "<h1>You have been selected for a survey</h1><p>We appreciate your feedback!</p><p><a href=\"<%= protocol %>://<%= domain %>/<%= path %>\">Please click here start it now.</a> </p> <a href=\"#\" onclick=\"document.getElementById('sg-popup').style.display = 'none';return false;\">No, thank you.</a> ";sg_div.id = "sg-popup";sg_div.style.position = "absolute";sg_div.style.width = "500px";sg_div.style.top = "100px";sg_div.style.left = "400px";sg_div.style.backgroundColor = "#ffffff";sg_div.style.borderColor = "#000000";sg_div.style.borderStyle = "solid";sg_div.style.padding = "20px";sg_div.style.fontSize = "16px";document.body.appendChild(sg_div);</script>
+
+<% } %>
+
+</body>
+</html>
